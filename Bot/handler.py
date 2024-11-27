@@ -21,11 +21,17 @@ async def start_handler(msg: Message):
 
 @router.message(Command('test1'))
 async def handler_1(msg: Message):
-    vacancies_dto = VacanciesDTO().set_text("Разраб").set_salary(100000).set_area("1").set_metro("1")
-    await msg.answer(vacancies_dto.get_vacancies_url_attributes())
-    # json_data = VacanciesProcess(vacancies_dto).get_vacancies()
+    vacancies_dto = VacanciesDTO().set_text("Водитель").set_salary(100000).set_area("1").set_metro("1")
+    # await msg.answer(vacancies_dto.get_vacancies_url_attributes())
+    json_data = VacanciesProcess(vacancies_dto).get_vacancies()
+    if json_data is not None:
+        await msg.answer(json_data.items[0].area.name + " "
+                         + json_data.items[0].name + json_data.items[0].address.metro.station_name)
+    else:
+        await msg.answer("Ничего не нашлось")
+
     # await msg.answer(json_data.items[0].area.name + " "
-    #                  + json_data.items[0].name + json_data.items[0].address)
+    #                  + json_data.items[0].name + json_data.items[0].address.metro.station_name)
 
 @router.message(F.text == 'Поиск вакансий')
 async def vac_name(message : Message, state: FSMContext):

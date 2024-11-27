@@ -19,4 +19,7 @@ class VacanciesProcess:
         data = request.content.decode()
         request.close()
 
-        return Vacancies.from_dict(json.loads(data))
+        if request.status_code == 200 and data is not None:
+            return Vacancies.from_dict(json.loads(data))
+        else:
+            return None
