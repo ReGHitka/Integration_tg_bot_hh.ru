@@ -104,6 +104,70 @@ class Type:
         _name = str(obj.get("name"))
         return Type(_id, _name)
 
+@dataclass
+class Metro:
+    station_name: str
+    line_name: str
+    station_id: str
+    line_id: str
+    lat: float
+    lng: float
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'Metro':
+        _station_name = str(obj.get("station_name"))
+        _line_name = str(obj.get("line_name"))
+        _station_id = str(obj.get("station_id"))
+        _line_id = str(obj.get("line_id"))
+        _lat = float(obj.get("lat"))
+        _lng = float(obj.get("lng"))
+        return Metro(_station_name, _line_name, _station_id, _line_id, _lat, _lng)
+
+@dataclass
+class MetroStation:
+    station_name: str
+    line_name: str
+    station_id: str
+    line_id: str
+    lat: float
+    lng: float
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'MetroStation':
+        _station_name = str(obj.get("station_name"))
+        _line_name = str(obj.get("line_name"))
+        _station_id = str(obj.get("station_id"))
+        _line_id = str(obj.get("line_id"))
+        _lat = float(obj.get("lat"))
+        _lng = float(obj.get("lng"))
+        return MetroStation(_station_name, _line_name, _station_id, _line_id, _lat, _lng)
+
+@dataclass
+class Address:
+    city: str
+    street: str
+    building: str
+    lat: float
+    lng: float
+    description: str
+    raw: str
+    metro: Metro
+    metro_stations: List[MetroStation]
+    id: str
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'Address':
+        _city = str(obj.get("city"))
+        _street = str(obj.get("street"))
+        _building = str(obj.get("building"))
+        _lat = float(obj.get("lat"))
+        _lng = float(obj.get("lng"))
+        _description = str(obj.get("description"))
+        _raw = str(obj.get("raw"))
+        _metro = Metro.from_dict(obj.get("metro"))
+        _metro_stations = [MetroStation.from_dict(y) for y in obj.get("metro_stations")]
+        _id = str(obj.get("id"))
+        return Address(_city, _street, _building, _lat, _lng, _description, _raw, _metro, _metro_stations, _id)
 
 @dataclass
 class Item:
@@ -116,7 +180,7 @@ class Item:
     area: Area
     salary: str
     type: Type
-    address: str
+    address: Address
     response_url: str
     sort_point_distance: str
     published_at: str
@@ -150,7 +214,7 @@ class Item:
         _area = Area.from_dict(obj.get("area"))
         _salary = str(obj.get("salary"))
         _type = Type.from_dict(obj.get("type"))
-        _address = str(obj.get("address"))
+        _address = Address.from_dict(obj.get("address"))
         _response_url = str(obj.get("response_url"))
         _sort_point_distance = str(obj.get("sort_point_distance"))
         _published_at = str(obj.get("published_at"))
