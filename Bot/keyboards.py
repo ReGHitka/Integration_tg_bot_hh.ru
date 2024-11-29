@@ -1,14 +1,19 @@
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 
-main = ReplyKeyboardMarkup(keyboard=[
+main_menu = ReplyKeyboardMarkup(keyboard=[
+    [KeyboardButton(text='Поиск вакансий'), KeyboardButton(text='Поиск 5 - ти вакансий')],
+    [KeyboardButton(text='Пройти опрос'), KeyboardButton(text='Пример хорошего резюме'), KeyboardButton(text='Официальные сайты компаний')]
+])
+
+main_search = ReplyKeyboardMarkup(keyboard=[
     [KeyboardButton(text='Поиск вакансий')]
 ])
 
 name_vac = ReplyKeyboardMarkup(keyboard=[
-    [KeyboardButton(text='Стажер разработчик Java'),
-     KeyboardButton(text='Стажер разработчик C#'), KeyboardButton(text='Стажер разработчик Python')],
-    [KeyboardButton(text='Стажер бизнес аналитик'),
-     KeyboardButton(text='Стажер систменый аналитик'), KeyboardButton(text='Стажер инженер связи')]
+    [KeyboardButton(text='Разработчик Java'),
+     KeyboardButton(text='Разработчик C#'), KeyboardButton(text='Разработчик Python')],
+    [KeyboardButton(text='Бизнес аналитик'),
+     KeyboardButton(text='Систменый аналитик'), KeyboardButton(text='Инженер связи')]
 ])
 
 metro = ReplyKeyboardMarkup(keyboard=[
@@ -20,4 +25,8 @@ metro = ReplyKeyboardMarkup(keyboard=[
 
 salary = ReplyKeyboardMarkup(keyboard=[
     [KeyboardButton(text='30000'), KeyboardButton(text='40000'), KeyboardButton(text='50000')]
+])
+
+back = ReplyKeyboardMarkup(keyboard=[
+    [KeyboardButton(text='Вернуться в главное меню')]
 ])
